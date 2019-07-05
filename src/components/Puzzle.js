@@ -13,7 +13,7 @@ const Puzzle = () => {
   if (loading) {
     return <p>Loading</p>
   }
-  console.log(phraseLetters)
+
   let hashed = ''
   const hashPuzzle = () => {
     phraseLetters.forEach(letter => {
