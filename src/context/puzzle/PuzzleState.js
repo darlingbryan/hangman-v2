@@ -1,7 +1,8 @@
 import React, { useReducer } from 'react'
 import puzzleReducer from './puzzleReducer'
 import PuzzleContext from './puzzleContext'
-import Axios from 'axios'
+import axios from 'axios'
+import { LOAD_PUZZLE } from '../types'
 
 const PuzzleState = props => {
   const initialState = {
@@ -16,7 +17,14 @@ const PuzzleState = props => {
   //Load Puzzle
   const loadPuzzle = async () => {
     try {
-      const res = await Axios.get('/puzzles/1')
+      const res = await axios.get('/puzzles/1')
+
+      const data = res.data.phrase.toUpperCase().split('')
+      console.log(data)
+      dispatch({
+        type: LOAD_PUZZLE,
+        payload: data
+      })
     } catch (err) {
       console.log(err)
     }
@@ -29,7 +37,8 @@ const PuzzleState = props => {
         letterGuesses: state.letterGuesses,
         guessesLeft: state.guessesLeft,
         loading: state.loading,
-        error: state.null
+        error: state.null,
+        loadPuzzle
       }}>
       {props.children}
     </PuzzleContext.Provider>
