@@ -17,11 +17,11 @@ const PuzzleState = props => {
   //Load Puzzle
   const loadPuzzle = async () => {
     try {
-      const res = await axios.get('/puzzles/1')
-      const data = res.data.phrase.toUpperCase().split('')
+      const res = await axios.get('//puzzle.mead.io/puzzle?wordCount=3')
+      const puz = res.data.puzzle.toUpperCase().split('')
       dispatch({
         type: LOAD_PUZZLE,
-        payload: data
+        payload: puz
       })
     } catch (err) {
       console.log(err)

@@ -22,7 +22,13 @@ const GameStatus = () => {
     console.log('Game over')
   }
 
-  return <div style={{ margin: '20px 0' }}>Streak: 4</div>
+  return (
+    <div style={{ margin: '20px 0' }}>
+      {' '}
+      <span>Guesses Left: {guessesLeft}</span> <br />
+      <span>Streak: 4</span>
+    </div>
+  )
 }
 
 export default GameStatus
