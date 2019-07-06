@@ -2,7 +2,7 @@ import React, { useReducer } from 'react'
 import puzzleReducer from './puzzleReducer'
 import PuzzleContext from './puzzleContext'
 import axios from 'axios'
-import { LOAD_PUZZLE, MAKE_GUESS, DECREMENT_ATTEMPTS } from '../types'
+import { LOAD_PUZZLE, ADD_GUESS, DECREMENT_ATTEMPTS } from '../types'
 
 const PuzzleState = props => {
   const initialState = {
@@ -28,10 +28,10 @@ const PuzzleState = props => {
     }
   }
 
-  //Make Guess
+  //Add Guess
   const makeGuess = guess => {
     dispatch({
-      type: MAKE_GUESS,
+      type: ADD_GUESS,
       payload: guess
     })
   }

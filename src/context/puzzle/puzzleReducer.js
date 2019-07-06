@@ -1,4 +1,4 @@
-import { LOAD_PUZZLE, MAKE_GUESS, DECREMENT_ATTEMPTS } from '../types'
+import { LOAD_PUZZLE, ADD_GUESS, DECREMENT_ATTEMPTS } from '../types'
 
 export default (state, action) => {
   switch (action.type) {
@@ -8,10 +8,16 @@ export default (state, action) => {
         phraseLetters: action.payload,
         loading: false
       }
-    case MAKE_GUESS:
-      return {
-        ...state,
-        letterGuesses: [action.payload, ...state.letterGuesses]
+    case ADD_GUESS:
+      if (state.letterGuesses.includes(action.payload)) {
+        return {
+          ...state
+        }
+      } else {
+        return {
+          ...state,
+          letterGuesses: [action.payload, ...state.letterGuesses]
+        }
       }
     case DECREMENT_ATTEMPTS:
       return {
