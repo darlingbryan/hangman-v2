@@ -3,9 +3,8 @@ import PuzzleContext from '../../context/puzzle/puzzleContext'
 import PropTypes from 'prop-types'
 
 const LetterBox = ({ ltr }) => {
-  const { phraseLetters, letterGuesses } = useContext(PuzzleContext)
+  const { letterGuesses } = useContext(PuzzleContext)
   const charIsASpace = ltr === ' '
-  const charIsIncluded = letterGuesses.includes(ltr)
   const charIsNotIncluded = !letterGuesses.includes(ltr)
 
   const renderLetterBoxes = () => {

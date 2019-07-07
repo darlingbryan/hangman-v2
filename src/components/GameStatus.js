@@ -22,10 +22,15 @@ const GameStatus = () => {
     console.log('Game over')
   }
 
+  const badGuess = letterGuesses.filter(
+    letter => !phraseLetters.includes(letter)
+  )
+  console.log(badGuess)
+
   return (
     <div style={{ margin: '20px 0' }}>
       {' '}
-      <span>Guesses Left: {guessesLeft}</span> <br />
+      <span>Guesses Left: {5 - badGuess.length}</span> <br />
       <span>Streak: 4</span>
     </div>
   )
