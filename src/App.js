@@ -1,7 +1,7 @@
 import React from 'react'
 import './App.css'
 
-import Puzzle from './components/Puzzle'
+import Puzzle from './components/Puzzle/Puzzle'
 import Letters from './components/Letters/Letters'
 import GameStatus from './components/GameStatus'
 

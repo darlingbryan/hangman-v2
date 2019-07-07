@@ -3,6 +3,7 @@ import puzzleReducer from './puzzleReducer'
 import PuzzleContext from './puzzleContext'
 import axios from 'axios'
 import { LOAD_PUZZLE, ADD_GUESS, DECREMENT_ATTEMPTS } from '../types'
+import uuid from 'uuid'
 
 const PuzzleState = props => {
   const initialState = {
@@ -19,6 +20,7 @@ const PuzzleState = props => {
     try {
       const res = await axios.get('//puzzle.mead.io/puzzle?wordCount=3')
       const puz = res.data.puzzle.toUpperCase().split('')
+
       dispatch({
         type: LOAD_PUZZLE,
         payload: puz

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, Fragment } from 'react'
 import Letter from './Letter'
 import puzzleContext from '../../context/puzzle/puzzleContext'
 
@@ -7,34 +7,9 @@ const Letters = () => {
     puzzleContext
   )
 
-  const letterGroup = [
-    'A',
-    'B',
-    'C',
-    'D',
-    'E',
-    'F',
-    'G',
-    'H',
-    'I',
-    'J',
-    'K',
-    'L',
-    'M',
-    'N',
-    'O',
-    'P',
-    'Q',
-    'R',
-    'S',
-    'T',
-    'U',
-    'V',
-    'W',
-    'X',
-    'Y',
-    'Z'
-  ]
+  const firstRow = ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P']
+  const secondRow = ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L']
+  const thirdRow = ['Z', 'X', 'C', 'V', 'B', 'N', 'M']
 
   let guess
   const onGuess = () => {
@@ -49,17 +24,33 @@ const Letters = () => {
 
   useEffect(() => {
     window.addEventListener('keypress', e => {
-      guess = String.fromCharCode(e.charCode)
+      if (e.charCode === 13 || e.charCode === 32) {
+        console.log('oops')
+        return
+      }
+      guess = String.fromCharCode(e.charCode).toUpperCase()
       onGuess()
     })
   }, [])
 
   return (
-    <div>
-      {letterGroup.map(letter => (
-        <Letter key={letter} ltr={letter} />
-      ))}
-    </div>
+    <Fragment>
+      <div>
+        {firstRow.map(letter => (
+          <Letter key={letter} ltr={letter} />
+        ))}
+      </div>
+      <div>
+        {secondRow.map(letter => (
+          <Letter key={letter} ltr={letter} />
+        ))}
+      </div>
+      <div>
+        {thirdRow.map(letter => (
+          <Letter key={letter} ltr={letter} />
+        ))}
+      </div>
+    </Fragment>
   )
 }
 
