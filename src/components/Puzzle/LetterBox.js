@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, Fragment } from 'react'
+import React, { useContext, Fragment } from 'react'
 import PuzzleContext from '../../context/puzzle/puzzleContext'
 import PropTypes from 'prop-types'
 
@@ -29,7 +29,9 @@ const boxStyle = {
 }
 const boxStyleSpace = { margin: '1px', padding: '3px' }
 
-const letterStyle = { fontSize: '12px' }
-LetterBox.propTypes = {}
+// const letterStyle = { fontSize: '12px' }
+LetterBox.propTypes = {
+  ltr: PropTypes.string.isRequired
+}
 
 export default LetterBox

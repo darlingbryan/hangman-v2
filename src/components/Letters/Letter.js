@@ -1,12 +1,12 @@
-import React, { useContext, Fragment, useState, useEffect } from 'react'
+import React, { useContext, Fragment } from 'react'
 import puzzleContext from '../../context/puzzle/puzzleContext'
 
 const Letter = ({ ltr }) => {
   const {
     makeGuess,
     phraseLetters,
-    decrementAttempts,
-    letterGuesses
+    letterGuesses,
+    decrementGuesses
   } = useContext(puzzleContext)
 
   const disableButton = letterGuesses.includes(ltr)
@@ -14,10 +14,9 @@ const Letter = ({ ltr }) => {
   const onGuess = () => {
     const guess = ltr.toUpperCase()
     const isBadGuess = !phraseLetters.includes(guess)
-
     if (isBadGuess) {
       makeGuess(guess)
-      decrementAttempts()
+      decrementGuesses()
     }
     makeGuess(guess)
   }
@@ -38,8 +37,8 @@ const Letter = ({ ltr }) => {
 }
 
 const letterStyle = {
-  padding: '12px',
-  margin: '3px',
+  padding: '1em',
+  margin: '0.3em',
   border: 'solid 1px'
 }
 

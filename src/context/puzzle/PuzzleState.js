@@ -2,8 +2,7 @@ import React, { useReducer } from 'react'
 import puzzleReducer from './puzzleReducer'
 import PuzzleContext from './puzzleContext'
 import axios from 'axios'
-import { LOAD_PUZZLE, ADD_GUESS, DECREMENT_ATTEMPTS } from '../types'
-import uuid from 'uuid'
+import { LOAD_PUZZLE, MAKE_GUESS, DECREMENT_GUESSES } from '../types'
 
 const PuzzleState = props => {
   const initialState = {
@@ -33,15 +32,15 @@ const PuzzleState = props => {
   //Add Guess
   const makeGuess = guess => {
     dispatch({
-      type: ADD_GUESS,
+      type: MAKE_GUESS,
       payload: guess
     })
   }
 
-  //Decrement Attempts
-  const decrementAttempts = () => {
+  //Decrement Guesses
+  const decrementGuesses = () => {
     dispatch({
-      type: DECREMENT_ATTEMPTS
+      type: DECREMENT_GUESSES
     })
   }
 
@@ -50,12 +49,12 @@ const PuzzleState = props => {
       value={{
         phraseLetters: state.phraseLetters,
         letterGuesses: state.letterGuesses,
-        guessesLeft: state.guessesLeft,
         loading: state.loading,
         error: state.null,
         loadPuzzle,
         makeGuess,
-        decrementAttempts
+        decrementGuesses,
+        guessesLeft: state.guessesLeft
       }}>
       {props.children}
     </PuzzleContext.Provider>

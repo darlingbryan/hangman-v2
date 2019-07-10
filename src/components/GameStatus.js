@@ -1,38 +1,50 @@
-import React, { useContext } from 'react'
+import React, { useContext, Fragment } from 'react'
 import puzzleContext from '../context/puzzle/puzzleContext'
+import gameContext from '../context/game/gameContext'
+import EndGame from './Modals/EndGame'
+
+import NextWord from './Modals/NextWord'
 
 const GameStatus = () => {
   const { guessesLeft, letterGuesses, phraseLetters, loading } = useContext(
     puzzleContext
   )
 
-  if (loading) {
-    return <p>loading</p>
-  }
+  const { playing, streak } = useContext(gameContext)
 
+  //Modals
   const puzzleFinished = phraseLetters.every(
     letter => letterGuesses.includes(letter) || letter === ' '
   )
 
-  if (puzzleFinished) {
-    console.log('Game finished')
+  //Loading
+  if (loading) {
+    return <p>loading</p>
   }
 
   if (guessesLeft === 0) {
     console.log('Game over')
   }
 
-  const badGuess = letterGuesses.filter(
-    letter => !phraseLetters.includes(letter)
-  )
-  console.log(badGuess)
-
   return (
-    <div style={{ margin: '20px 0' }}>
-      {' '}
-      <span>Guesses Left: {5 - badGuess.length}</span> <br />
-      <span>Streak: 4</span>
-    </div>
+    <Fragment>
+      <div style={{ margin: '20px 0' }}>
+        {' '}
+        <span>Guesses Left: {guessesLeft}</span> <br />
+        <span>Streak: {streak}</span>
+      </div>
+      {puzzleFinished && playing && (
+        <Fragment>
+          <NextWord show={true} />
+        </Fragment>
+      )}
+
+      {guessesLeft === 0 && (
+        <Fragment>
+          <EndGame show={true} />
+        </Fragment>
+      )}
+    </Fragment>
   )
 }
 
