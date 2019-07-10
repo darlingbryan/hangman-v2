@@ -26,7 +26,6 @@ const NextWord = ({ ...props }) => {
         <Modal.Title id='contained-modal-title-vcenter'>Great Job!</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <h4 />
         <h3>{stringed}</h3>
       </Modal.Body>
       <Modal.Footer>

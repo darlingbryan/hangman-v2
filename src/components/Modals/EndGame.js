@@ -23,7 +23,9 @@ const EndGame = ({ ...props }) => {
       </Modal.Header>
       <Modal.Body>
         <p>The word is </p>
+
         <h4>{stringed}</h4>
+
         {streak === 0 ? (
           <p>You didn't made it pass the first puzzle!</p>
         ) : (
