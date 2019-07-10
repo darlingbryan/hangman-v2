@@ -2,6 +2,7 @@ import React, { useContext, Fragment } from 'react'
 import puzzleContext from '../context/puzzle/puzzleContext'
 import gameContext from '../context/game/gameContext'
 import EndGame from './Modals/EndGame'
+import { Col } from 'react-bootstrap'
 
 import NextWord from './Modals/NextWord'
 
@@ -27,11 +28,11 @@ const GameStatus = () => {
   }
 
   return (
-    <Fragment>
+    <Col>
       <div style={{ margin: '20px 0' }}>
         {' '}
-        <span>Guesses Left: {guessesLeft}</span> <br />
-        <span>Streak: {streak}</span>
+        <h4>Guesses Left: {guessesLeft}</h4> <br />
+        <h4>Streak: {streak}</h4>
       </div>
       {puzzleFinished && playing && (
         <Fragment>
@@ -44,7 +45,7 @@ const GameStatus = () => {
           <EndGame show={true} />
         </Fragment>
       )}
-    </Fragment>
+    </Col>
   )
 }
 

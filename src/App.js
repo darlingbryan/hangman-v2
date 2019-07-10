@@ -4,7 +4,9 @@ import './App.css'
 import Puzzle from './components/Puzzle/Puzzle'
 import Letters from './components/Letters/Letters'
 import GameStatus from './components/GameStatus'
-import { Container } from 'react-bootstrap'
+import Image from './components/Image'
+import About from './components/About'
+import { Container, Row } from 'react-bootstrap'
 import GameState from './context/game/GameState'
 import PuzzleState from './context/puzzle/PuzzleState'
 
@@ -16,7 +18,11 @@ function App() {
           <h1>Guess That Phrase</h1>
           <Puzzle />
           <Letters />
-          <GameStatus />
+          <Row>
+            <GameStatus />
+            <Image />
+            <About />
+          </Row>
         </Container>
       </PuzzleState>
     </GameState>

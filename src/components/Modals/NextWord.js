@@ -1,14 +1,17 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import GameContext from '../../context/game/gameContext'
 import PuzzleContext from '../../context/puzzle/puzzleContext'
 import { Modal, Button } from 'react-bootstrap'
 
 const NextWord = ({ ...props }) => {
+  useEffect(() => {
+    addStreak()
+    //eslint-disable-next-line
+  }, [])
   const { loadPuzzle, phraseLetters } = useContext(PuzzleContext)
   const { addStreak } = useContext(GameContext)
   const onClick = () => {
     loadPuzzle()
-    addStreak()
   }
 
   const stringed = phraseLetters.join('')
