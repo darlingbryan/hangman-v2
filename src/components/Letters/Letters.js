@@ -1,37 +1,50 @@
-import React from 'react'
+import React, { useState, useContext } from 'react'
+import puzzleContext from '../../context/puzzle/puzzleContext'
 import Letter from './Letter'
-// import puzzleContext from '../../context/puzzle/puzzleContext'
 import { Container, Row } from 'react-bootstrap'
 
 const Letters = () => {
-  // const {
-  //   makeGuess,
-  //   letterGuesses,
-  //   decrementGuesses,
-  //   phraseLetters
-  // } = useContext(puzzleContext)
+  const {
+    makeGuess,
+    phraseLetters,
+    decrementGuesses,
+    letterGuesses
+  } = useContext(puzzleContext)
 
+  const [key, setKey] = useState('')
+  let guess
   const firstRow = ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P']
   const secondRow = ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L']
   const thirdRow = ['Z', 'X', 'C', 'V', 'B', 'N', 'M']
-  // const alphabet = firstRow.concat(secondRow.concat(thirdRow))
-  // let guess
 
-  // const onGuess = () => {
-  //   console.log(phraseLetters)
-  //   console.log(letterGuesses)
-  //   makeGuess()
-  //   decrementGuesses()
-  // }
+  const onGuess = () => {
+    const isBadGuess = !phraseLetters.includes(guess)
+    const isNotUnique = letterGuesses.includes(guess)
 
-  // useEffect(() => {
-  //   window.addEventListener('keypress', e => {
-  //     const ltr = String.fromCharCode(e.charCode).toUpperCase()
-  //     if (alphabet.includes(ltr)) {
-  //       guess = ltr
-  //     }
-  //   })
-  // }, [phraseLetters, letterGuesses])
+    console.log(phraseLetters)
+    if (isNotUnique) {
+      return
+    }
+
+    makeGuess(guess)
+
+    if (isBadGuess) {
+      decrementGuesses()
+    }
+  }
+
+  const handleKeyDown = e => {
+    setKey(e.key)
+    guess = key.toUpperCase()
+    console.log(guess)
+  }
+
+  const handleKeyUp = e => {
+    setKey(e.key)
+    guess = key.toUpperCase()
+    console.log(guess)
+    onGuess()
+  }
 
   return (
     <Container>
@@ -49,6 +62,15 @@ const Letters = () => {
         {thirdRow.map(letter => (
           <Letter key={letter} ltr={letter} />
         ))}
+      </Row>
+      <Row className='justify-content-md-center'>
+        <div
+          style={{ border: '1px solid', padding: '20px', margin: '20px' }}
+          tabIndex='0'
+          onKeyDown={handleKeyDown}
+          onKeyUp={handleKeyUp}>
+          Click Here to use your Keyboard {key}
+        </div>
       </Row>
     </Container>
   )
